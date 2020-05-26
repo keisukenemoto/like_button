@@ -18,8 +18,9 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) { //ログイ�
 if (!empty($_POST)) {
     if ($_POST['message'] != '') {
         $message = $db->prepare('INSERT INTO posts SET  member_id=?, message=?, reply_post_id=?, created=NOW()');
-        //var_dump($_POST);
-        //die();
+        //var_dump($db->errorCode());
+        var_dump($db->errorInfo());
+        die();
         $message->execute(array(
             $member['id'],
             $_POST['message'],
